@@ -1,0 +1,193 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Godot Shader",
+  "scopeName": "source.godot-shader",
+  "fileTypes": [
+    "gdshader",
+    "gdshaderinc"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#preprocessor"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "match": "\\b[A-Za-z_]\\w*\\b",
+      "name": "variable.other.godot-shader"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.godot-shader",
+          "begin": "/\\*",
+          "end": "\\*/"
+        },
+        {
+          "match": "//.*$",
+          "name": "comment.line.double-slash.godot-shader"
+        }
+      ]
+    },
+    "preprocessor": {
+      "patterns": [
+        {
+          "name": "meta.preprocessor.godot-shader",
+          "begin": "^\\s*(#\\s*(?:include|define|undef|if|ifdef|ifndef|else|elif|endif|pragma|version|warning|error)\\b)",
+          "end": "$",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.directive.godot-shader"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#strings"
+            },
+            {
+              "match": "(?:res|uid)://[A-Za-z0-9_./~:-]+",
+              "name": "constant.other.path.godot-shader"
+            },
+            {
+              "match": "\\b[A-Za-z_]\\w*\\b",
+              "name": "variable.other.preprocessor.godot-shader"
+            }
+          ]
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.godot-shader",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "match": "\\\\(?:[nrt\\\\\"']|u[0-9A-Fa-f]{4})",
+              "name": "constant.character.escape.godot-shader"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.godot-shader",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "match": "\\\\(?:[nrt\\\\\"']|u[0-9A-Fa-f]{4})",
+              "name": "constant.character.escape.godot-shader"
+            }
+          ]
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "match": "\\b(?:shader_type|render_mode)\\b",
+          "name": "keyword.control.shader.godot-shader"
+        },
+        {
+          "match": "\\b(?:uniform|varying|const|struct|void|return|if|else|for|while|break|continue|discard|in|out|inout)\\b",
+          "name": "keyword.control.godot-shader"
+        },
+        {
+          "match": "\\b(?:group_uniforms|instance_index|instance_custom|light_only|skip_vertex_transform)\\b",
+          "name": "storage.modifier.godot-shader"
+        },
+        {
+          "match": "\\b(?:vertex|fragment|light|start|process|sky|fog)\\b",
+          "name": "entity.name.function.stage.godot-shader"
+        },
+        {
+          "match": "\\b(?:hint_albedo|hint_color|hint_range|hint_enum|hint_white|hint_black|hint_default_white|hint_default_black|hint_screen_texture|hint_depth_texture|hint_normal_roughness_texture)\\b",
+          "name": "constant.other.hint.godot-shader"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "match": "\\b(?:bool|int|uint|float|double|vec2|vec3|vec4|ivec2|ivec3|ivec4|uvec2|uvec3|uvec4|bvec2|bvec3|bvec4|mat2|mat3|mat4|sampler2D|sampler2DArray|sampler3D|samplerCube|isampler2D|usampler2D|texture2D|texture3D|textureCube)\\b",
+          "name": "support.type.godot-shader"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "match": "\\b(?:true|false|PI|TAU|E|INF|NAN)\\b",
+          "name": "constant.language.godot-shader"
+        },
+        {
+          "match": "\\b(?:VERTEX|NORMAL|TANGENT|BINORMAL|UV|UV2|COLOR|POINT_SIZE|POSITION|WORLD_MATRIX|MODEL_MATRIX|VIEW_MATRIX|PROJECTION_MATRIX|TIME|VIEWPORT_SIZE|SCREEN_UV|SCREEN_PIXEL_SIZE|FRAGCOORD|DEPTH|ALBEDO|METALLIC|ROUGHNESS|SPECULAR|EMISSION|NORMAL_MAP|NORMAL_MAP_DEPTH|RIM|RIM_TINT|CLEARCOAT|CLEARCOAT_GLOSS|ANISOTROPY|TRANSMISSION|BACKLIGHT|AO|AO_LIGHT_AFFECT|SSS_STRENGTH|SSS_TRANSMITTANCE_DEPTH|SSS_TRANSMITTANCE_BOOST|ATTENUATION|LIGHT_COLOR|LIGHT|SHADOW_MODULATE|FOG|FOG_DEPTH|FOG_HEIGHT|OUTPUT_IS_SRGB)\\b",
+          "name": "variable.language.builtin.godot-shader"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "match": "(?<![\\w.])(?:0[xX][0-9A-Fa-f]+|0[bB][01]+|\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)(?:[fFuU])?(?![\\w.])",
+          "name": "constant.numeric.godot-shader"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "match": "\\b(?:abs|acos|all|any|asin|atan|atan2|ceil|clamp|cos|cross|degrees|determinant|distance|dot|exp|exp2|faceforward|floor|fract|inversesqrt|length|log|log2|max|min|mix|mod|normalize|pow|radians|reflect|refract|round|sign|sin|smoothstep|sqrt|step|tan|texture|textureLod|textureProj|transpose|trunc)\\b(?=\\s*\\()",
+          "name": "support.function.builtin.godot-shader"
+        },
+        {
+          "match": "\\b([A-Za-z_]\\w*)\\s+(?:(?:[A-Za-z_]\\w*)\\s+)?([A-Za-z_]\\w*)\\s*(?=\\()",
+          "captures": {
+            "1": {
+              "name": "support.type.return.godot-shader"
+            },
+            "2": {
+              "name": "entity.name.function.godot-shader"
+            }
+          }
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "match": "(?:==|!=|<=|>=|\\+=|-=|\\*=|/=|&&|\\|\\||<<|>>|\\+|-|\\*|/|%|<|>|=|&|\\||\\^|!|\\?)",
+          "name": "keyword.operator.godot-shader"
+        },
+        {
+          "match": "[()\\[\\]{},.;:]",
+          "name": "punctuation.godot-shader"
+        }
+      ]
+    }
+  }
+}

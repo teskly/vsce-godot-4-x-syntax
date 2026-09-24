@@ -1,0 +1,325 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Godot Resource",
+  "scopeName": "source.godot-resource",
+  "fileTypes": [
+    "tscn",
+    "tres"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#section-headers"
+    },
+    {
+      "include": "#properties"
+    },
+    {
+      "include": "#typed-values"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#literals"
+    },
+    {
+      "include": "#constructors"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "match": "^\\s*;.*$",
+          "name": "comment.line.semicolon.godot-resource"
+        }
+      ]
+    },
+    "section-headers": {
+      "patterns": [
+        {
+          "name": "meta.section.godot-resource",
+          "begin": "^(\\[)(gd_scene)(?=\\s|\\])",
+          "end": "\\]",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.section.begin.godot-resource"
+            },
+            "2": {
+              "name": "keyword.control.section.godot-resource"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.section.end.godot-resource"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#common-header-attributes"
+            }
+          ]
+        },
+        {
+          "name": "meta.section.godot-resource",
+          "begin": "^(\\[)(gd_resource)(?=\\s|\\])",
+          "end": "\\]",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.section.begin.godot-resource"
+            },
+            "2": {
+              "name": "keyword.control.section.godot-resource"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.section.end.godot-resource"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#common-header-attributes"
+            },
+            {
+              "match": "\\b(format|load_steps)\\b(?=\\s*=)",
+              "name": "entity.name.tag.attribute.godot-resource"
+            }
+          ]
+        },
+        {
+          "name": "meta.section.godot-resource",
+          "begin": "^(\\[)(ext_resource)(?=\\s|\\])",
+          "end": "\\]",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.section.begin.godot-resource"
+            },
+            "2": {
+              "name": "keyword.control.section.godot-resource"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.section.end.godot-resource"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#common-header-attributes"
+            },
+            {
+              "match": "\\btype\\b(?=\\s*=)",
+              "name": "entity.name.type.external-resource.godot-resource"
+            }
+          ]
+        },
+        {
+          "name": "meta.section.godot-resource",
+          "begin": "^(\\[)(sub_resource)(?=\\s|\\])",
+          "end": "\\]",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.section.begin.godot-resource"
+            },
+            "2": {
+              "name": "keyword.control.section.godot-resource"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.section.end.godot-resource"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#common-header-attributes"
+            },
+            {
+              "match": "\\btype\\b(?=\\s*=)",
+              "name": "entity.name.type.sub-resource.godot-resource"
+            }
+          ]
+        },
+        {
+          "name": "meta.section.godot-resource",
+          "begin": "^(\\[)(node)(?=\\s|\\])",
+          "end": "\\]",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.section.begin.godot-resource"
+            },
+            "2": {
+              "name": "keyword.control.section.godot-resource"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.section.end.godot-resource"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#common-header-attributes"
+            },
+            {
+              "match": "\\btype\\b(?=\\s*=)",
+              "name": "entity.name.type.node.godot-resource"
+            },
+            {
+              "match": "\\b(?:name|parent|instance|unique_name_in_owner|owner)\\b(?=\\s*=)",
+              "name": "entity.name.tag.node-attribute.godot-resource"
+            }
+          ]
+        },
+        {
+          "name": "meta.section.godot-resource",
+          "begin": "^(\\[)(connection)(?=\\s|\\])",
+          "end": "\\]",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.section.begin.godot-resource"
+            },
+            "2": {
+              "name": "keyword.control.section.godot-resource"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.section.end.godot-resource"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#common-header-attributes"
+            },
+            {
+              "match": "\\b(?:signal|from|to|method|binds|unbinds)\\b(?=\\s*=)",
+              "name": "entity.name.tag.connection-attribute.godot-resource"
+            }
+          ]
+        }
+      ]
+    },
+    "common-header-attributes": {
+      "patterns": [
+        {
+          "match": "\\b(?:format|load_steps|uid|id|name|parent|instance|unique_id|owner|path|signal|from|to|method|binds|unbinds)\\b(?=\\s*=)",
+          "name": "entity.name.tag.attribute.godot-resource"
+        },
+        {
+          "match": "=",
+          "name": "keyword.operator.assignment.godot-resource"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#typed-values"
+        },
+        {
+          "include": "#literals"
+        }
+      ]
+    },
+    "properties": {
+      "patterns": [
+        {
+          "match": "^\\s*([A-Za-z_][\\w./-]*)(?=\\s*=)",
+          "captures": {
+            "1": {
+              "name": "entity.name.tag.property.godot-resource"
+            }
+          }
+        },
+        {
+          "match": "=",
+          "name": "keyword.operator.assignment.godot-resource"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.godot-resource",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "match": "(?:res|uid)://[^\"\\s]+",
+              "name": "constant.other.path.godot-resource"
+            },
+            {
+              "match": "\\\\(?:[nrt\\\\\"']|u[0-9A-Fa-f]{4})",
+              "name": "constant.character.escape.godot-resource"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.godot-resource",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "match": "\\\\(?:[nrt\\\\\"']|u[0-9A-Fa-f]{4})",
+              "name": "constant.character.escape.godot-resource"
+            }
+          ]
+        }
+      ]
+    },
+    "typed-values": {
+      "patterns": [
+        {
+          "name": "meta.constructor.godot-resource",
+          "begin": "\\b(ExtResource|SubResource|NodePath|Resource)\\s*(?=\\()",
+          "end": "\\)",
+          "beginCaptures": {
+            "1": {
+              "name": "support.class.godot-resource"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#literals"
+            }
+          ]
+        }
+      ]
+    },
+    "constructors": {
+      "patterns": [
+        {
+          "match": "\\b(?:Vector[234]i?|Rect[234]i?|Transform[234]|Color|Plane|Basis|Quaternion|Projection|AABB|RID|Callable|Signal)\\b(?=\\s*\\()",
+          "name": "support.class.constructor.godot-resource"
+        },
+        {
+          "match": "\\b(?:Array|Dictionary)\\b(?=\\s*\\()",
+          "name": "support.class.constructor.godot-resource"
+        }
+      ]
+    },
+    "literals": {
+      "patterns": [
+        {
+          "match": "\\b(?:true|false|null)\\b",
+          "name": "constant.language.godot-resource"
+        },
+        {
+          "match": "(?<![\\w.])(?:0[xX][0-9A-Fa-f]+|0[bB][01]+|\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)(?![\\w.])",
+          "name": "constant.numeric.godot-resource"
+        },
+        {
+          "match": "[\\[\\]{},()]",
+          "name": "punctuation.separator.godot-resource"
+        }
+      ]
+    }
+  }
+}

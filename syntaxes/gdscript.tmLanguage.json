@@ -1,0 +1,213 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "GDScript",
+  "scopeName": "source.gdscript",
+  "fileTypes": [
+    "gd"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#annotations"
+    },
+    {
+      "include": "#node-paths"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "#members"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "match": "\\b[A-Za-z_]\\w*\\b",
+      "name": "variable.other.gdscript"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "match": "#.*$",
+          "name": "comment.line.number-sign.gdscript"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.gdscript",
+          "begin": "\"\"\"",
+          "end": "\"\"\"",
+          "patterns": [
+            {
+              "match": "\\\\(?:[nrtbf\\\\\"']|u[0-9A-Fa-f]{4})",
+              "name": "constant.character.escape.gdscript"
+            },
+            {
+              "match": "\\{[A-Za-z_]\\w*(?:\\.[A-Za-z_]\\w*)*\\}",
+              "name": "variable.interpolation.gdscript"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.double.gdscript",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "match": "\\\\(?:[nrtbf\\\\\"']|u[0-9A-Fa-f]{4})",
+              "name": "constant.character.escape.gdscript"
+            },
+            {
+              "match": "\\{[A-Za-z_]\\w*(?:\\.[A-Za-z_]\\w*)*\\}",
+              "name": "variable.interpolation.gdscript"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.gdscript",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "match": "\\\\(?:[nrtbf\\\\\"']|u[0-9A-Fa-f]{4})",
+              "name": "constant.character.escape.gdscript"
+            }
+          ]
+        }
+      ]
+    },
+    "annotations": {
+      "patterns": [
+        {
+          "match": "@[A-Za-z_]\\w*",
+          "name": "storage.type.annotation.gdscript"
+        }
+      ]
+    },
+    "node-paths": {
+      "patterns": [
+        {
+          "match": "\\$[A-Za-z_][\\w/]*(?=\\b|[^\\w/])",
+          "name": "variable.language.node-path.gdscript"
+        },
+        {
+          "match": "%[A-Za-z_]\\w*",
+          "name": "variable.language.unique-node.gdscript"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "match": "\\b(?:extends|class_name|class|signal|enum|const|var|static|func)\\b",
+          "name": "storage.type.gdscript"
+        },
+        {
+          "match": "\\b(?:if|elif|else|for|while|match|when|break|continue|pass|return|await|yield|as|is|in|and|or|not| and | or | not )\\b",
+          "name": "keyword.control.gdscript"
+        },
+        {
+          "match": "\\b(?:try|except|finally|assert|void)\\b",
+          "name": "keyword.control.exception.gdscript"
+        },
+        {
+          "match": "\\b(?:preload|load|super|self)\\b",
+          "name": "variable.language.gdscript"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "match": "\\b(?:bool|int|float|String|Vector2|Vector2i|Rect2|Rect2i|Transform2D|Vector3|Vector3i|AABB|Transform3D|Vector4|Vector4i|Projection|Color|Plane|Quaternion|Basis|Array|Dictionary|PackedByteArray|PackedInt32Array|PackedInt64Array|PackedFloat32Array|PackedFloat64Array|PackedStringArray|PackedVector2Array|PackedVector3Array|PackedColorArray|NodePath|RID|Callable|Signal|Object|RefCounted|Resource|Node|Node2D|Node3D|Control|CharacterBody2D|CharacterBody3D|TileMap|TileMapLayer|Camera2D|Camera3D|Timer|Area2D|Area3D|CollisionShape2D|CollisionShape3D)\\b",
+          "name": "support.type.gdscript"
+        },
+        {
+          "match": "\\b[A-Z][A-Za-z0-9_]*\\b",
+          "name": "entity.name.type.gdscript"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "match": "\\b(?:true|false|null|PI|TAU|INF|NAN)\\b",
+          "name": "constant.language.gdscript"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "match": "(?<![\\w.])(?:0[xX][0-9A-Fa-f](?:_?[0-9A-Fa-f])*|0[bB][01](?:_?[01])*|(?:\\d(?:_?\\d)*)?\\.\\d(?:_?\\d)*(?:[eE][+-]?\\d(?:_?\\d)*)?|\\d(?:_?\\d)*(?:[eE][+-]?\\d(?:_?\\d)*)?)(?![\\w.])",
+          "name": "constant.numeric.gdscript"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "match": "\\b(func)\\s+([A-Za-z_]\\w*)",
+          "captures": {
+            "1": {
+              "name": "storage.type.function.gdscript"
+            },
+            "2": {
+              "name": "entity.name.function.gdscript"
+            }
+          }
+        },
+        {
+          "match": "\\b([A-Za-z_]\\w*)(?=\\s*\\()",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.call.gdscript"
+            }
+          }
+        }
+      ]
+    },
+    "members": {
+      "patterns": [
+        {
+          "match": "(?<=\\.)[A-Za-z_]\\w*",
+          "name": "variable.other.property.gdscript"
+        },
+        {
+          "match": "\\b[A-Za-z_]\\w*(?=\\s*:\\s*[A-Za-z_])",
+          "name": "variable.other.declaration.gdscript"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "match": "(?:==|!=|<=|>=|\\+=|-=|\\*=|/=|%=|&&|\\|\\||<<|>>|=>|\\+|-|\\*|/|%|<|>|=|&|\\||\\^|~|!)",
+          "name": "keyword.operator.gdscript"
+        }
+      ]
+    }
+  }
+}

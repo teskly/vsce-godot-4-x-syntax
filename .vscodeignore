@@ -1,0 +1,11 @@
+.git/**
+.gitignore
+.agents/**
+.cursor/**
+.vscode/**
+src/**
+tsconfig.json
+**/*.map
+npm-debug.log
+*.vsix
+*.tsbuildinfo

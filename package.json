@@ -1,0 +1,187 @@
+{
+  "name": "godot-4-x-syntax",
+  "displayName": "Godot 4.x Syntax",
+  "description": "Syntax highlighting and GDScript snippets for Godot 4.x files.",
+  "version": "0.1.1",
+  "publisher": "teskly",
+  "license": "MIT",
+  "icon": "icons/godot-4-x-syntax.png",
+  "main": "./out/extension.js",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "godot",
+    "godot 4",
+    "gdscript",
+    "shader",
+    "syntax highlighting"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "gdscript",
+        "aliases": [
+          "GDScript",
+          "gd"
+        ],
+        "extensions": [
+          ".gd"
+        ],
+        "configuration": "./gd-language-configuration.json"
+      },
+      {
+        "id": "godot-tscn",
+        "aliases": [
+          "Godot Scene",
+          "TSCN"
+        ],
+        "extensions": [
+          ".tscn"
+        ],
+        "configuration": "./tscn-language-configuration.json"
+      },
+      {
+        "id": "godot-tres",
+        "aliases": [
+          "Godot Resource",
+          "TRES"
+        ],
+        "extensions": [
+          ".tres"
+        ],
+        "configuration": "./tres-language-configuration.json"
+      },
+      {
+        "id": "godot-project",
+        "aliases": [
+          "Godot Project"
+        ],
+        "filenames": [
+          "project.godot"
+        ],
+        "configuration": "./project-language-configuration.json"
+      },
+      {
+        "id": "godot-shader",
+        "aliases": [
+          "Godot Shader",
+          "GDShader"
+        ],
+        "extensions": [
+          ".gdshader",
+          ".gdshaderinc"
+        ],
+        "configuration": "./shader-language-configuration.json"
+      },
+      {
+        "id": "godot-gdextension",
+        "aliases": [
+          "GDExtension"
+        ],
+        "extensions": [
+          ".gdextension"
+        ],
+        "configuration": "./gdextension-language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "gdscript",
+        "scopeName": "source.gdscript",
+        "path": "./syntaxes/gdscript.tmLanguage.json"
+      },
+      {
+        "language": "godot-tscn",
+        "scopeName": "source.godot-resource",
+        "path": "./syntaxes/godot-resource.tmLanguage.json"
+      },
+      {
+        "language": "godot-tres",
+        "scopeName": "source.godot-resource",
+        "path": "./syntaxes/godot-resource.tmLanguage.json"
+      },
+      {
+        "language": "godot-project",
+        "scopeName": "source.godot-project",
+        "path": "./syntaxes/godot-project.tmLanguage.json"
+      },
+      {
+        "language": "godot-shader",
+        "scopeName": "source.godot-shader",
+        "path": "./syntaxes/godot-shader.tmLanguage.json"
+      },
+      {
+        "language": "godot-gdextension",
+        "scopeName": "source.godot-gdextension",
+        "path": "./syntaxes/godot-gdextension.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "gdscript",
+        "path": "./snippets/gdscript.code-snippets"
+      }
+    ],
+    "commands": [
+      {
+        "command": "godot.lsp.connect",
+        "title": "Godot LSP: Connect"
+      },
+      {
+        "command": "godot.lsp.reconnect",
+        "title": "Godot LSP: Reconnect"
+      },
+      {
+        "command": "godot.lsp.showStatus",
+        "title": "Godot LSP: Show Status"
+      }
+    ],
+    "configuration": {
+      "title": "Godot 4.x Language Server",
+      "properties": {
+        "godot.lsp.host": {
+          "type": "string",
+          "default": "127.0.0.1",
+          "description": "Host address of the Godot 4.x Language Server."
+        },
+        "godot.lsp.port": {
+          "type": "number",
+          "default": 6005,
+          "minimum": 1,
+          "maximum": 65535,
+          "description": "TCP port of the Godot 4.x Language Server. Godot 4.x uses 6005 by default."
+        },
+        "godot.lsp.autoReconnect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically retry the Godot 4.x Language Server connection after a disconnect."
+        },
+        "godot.lsp.maxReconnectAttempts": {
+          "type": "number",
+          "default": 5,
+          "minimum": 0,
+          "maximum": 20,
+          "description": "Maximum number of automatic reconnect attempts before a manual reconnect is required."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "package": "npm run compile && vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "@types/vscode": "1.85.0",
+    "@vscode/vsce": "^3.6.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^8.1.0"
+  }
+}

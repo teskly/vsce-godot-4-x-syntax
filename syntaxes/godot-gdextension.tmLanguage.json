@@ -1,0 +1,126 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Godot GDExtension",
+  "scopeName": "source.godot-gdextension",
+  "fileTypes": [
+    "gdextension"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#sections"
+    },
+    {
+      "include": "#keys"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#paths"
+    },
+    {
+      "include": "#literals"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "match": "^\\s*;.*$",
+          "name": "comment.line.semicolon.godot-gdextension"
+        }
+      ]
+    },
+    "sections": {
+      "patterns": [
+        {
+          "name": "meta.section.godot-gdextension",
+          "match": "^(\\[)(configuration|libraries|dependencies)(\\])",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.section.begin.godot-gdextension"
+            },
+            "2": {
+              "name": "entity.name.section.godot-gdextension"
+            },
+            "3": {
+              "name": "punctuation.definition.section.end.godot-gdextension"
+            }
+          }
+        }
+      ]
+    },
+    "keys": {
+      "patterns": [
+        {
+          "match": "^\\s*((?:entry_symbol|compatibility_minimum|reloadable|android_aar_plugin|[A-Za-z][A-Za-z0-9_.-]*))(\\s*)(=)",
+          "captures": {
+            "1": {
+              "name": "entity.name.tag.setting.godot-gdextension"
+            },
+            "3": {
+              "name": "keyword.operator.assignment.godot-gdextension"
+            }
+          }
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.godot-gdextension",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "match": "(?:res|uid)://[^\"\\s]+",
+              "name": "constant.other.path.godot-gdextension"
+            },
+            {
+              "match": "\\\\(?:[nrt\\\\\"']|u[0-9A-Fa-f]{4})",
+              "name": "constant.character.escape.godot-gdextension"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.godot-gdextension",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "match": "\\\\(?:[nrt\\\\\"']|u[0-9A-Fa-f]{4})",
+              "name": "constant.character.escape.godot-gdextension"
+            }
+          ]
+        }
+      ]
+    },
+    "paths": {
+      "patterns": [
+        {
+          "match": "(?:res|uid)://[A-Za-z0-9_./~:-]+",
+          "name": "constant.other.path.godot-gdextension"
+        }
+      ]
+    },
+    "literals": {
+      "patterns": [
+        {
+          "match": "\\b(?:true|false|null)\\b",
+          "name": "constant.language.godot-gdextension"
+        },
+        {
+          "match": "(?<![\\w.])(?:0[xX][0-9A-Fa-f]+|0[bB][01]+|\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)(?![\\w.])",
+          "name": "constant.numeric.godot-gdextension"
+        },
+        {
+          "match": "[\\[\\]{},()]",
+          "name": "punctuation.separator.godot-gdextension"
+        }
+      ]
+    }
+  }
+}

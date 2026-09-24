@@ -1,0 +1,126 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Godot Project",
+  "scopeName": "source.godot-project",
+  "fileTypes": [
+    "godot"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#sections"
+    },
+    {
+      "include": "#keys"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#paths"
+    },
+    {
+      "include": "#literals"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "match": "^\\s*;.*$",
+          "name": "comment.line.semicolon.godot-project"
+        }
+      ]
+    },
+    "sections": {
+      "patterns": [
+        {
+          "name": "meta.section.godot-project",
+          "match": "^(\\[)([^\\]]+)(\\])",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.section.begin.godot-project"
+            },
+            "2": {
+              "name": "entity.name.section.godot-project"
+            },
+            "3": {
+              "name": "punctuation.definition.section.end.godot-project"
+            }
+          }
+        }
+      ]
+    },
+    "keys": {
+      "patterns": [
+        {
+          "match": "^\\s*([A-Za-z_][\\w./-]*)(\\s*)(=)",
+          "captures": {
+            "1": {
+              "name": "entity.name.tag.setting.godot-project"
+            },
+            "3": {
+              "name": "keyword.operator.assignment.godot-project"
+            }
+          }
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.godot-project",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "match": "(?:res|uid)://[^\"\\s]+",
+              "name": "constant.other.path.godot-project"
+            },
+            {
+              "match": "\\\\(?:[nrt\\\\\"']|u[0-9A-Fa-f]{4})",
+              "name": "constant.character.escape.godot-project"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.godot-project",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "match": "\\\\(?:[nrt\\\\\"']|u[0-9A-Fa-f]{4})",
+              "name": "constant.character.escape.godot-project"
+            }
+          ]
+        }
+      ]
+    },
+    "paths": {
+      "patterns": [
+        {
+          "match": "(?:res|uid)://[A-Za-z0-9_./~:-]+",
+          "name": "constant.other.path.godot-project"
+        }
+      ]
+    },
+    "literals": {
+      "patterns": [
+        {
+          "match": "\\b(?:true|false|null)\\b",
+          "name": "constant.language.godot-project"
+        },
+        {
+          "match": "(?<![\\w.])(?:0[xX][0-9A-Fa-f]+|0[bB][01]+|\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)(?![\\w.])",
+          "name": "constant.numeric.godot-project"
+        },
+        {
+          "match": "[\\[\\]{},()]",
+          "name": "punctuation.separator.godot-project"
+        }
+      ]
+    }
+  }
+}

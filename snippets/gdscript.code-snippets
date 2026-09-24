@@ -1,0 +1,117 @@
+{
+  "Extends Node": {
+    "prefix": "extends",
+    "body": [
+      "extends ${1:Node}"
+    ],
+    "description": "Declare a base Godot class"
+  },
+  "Class name": {
+    "prefix": "class_name",
+    "body": [
+      "class_name ${1:MyClass}"
+    ],
+    "description": "Register a global GDScript class"
+  },
+  "Function": {
+    "prefix": "func",
+    "body": [
+      "func ${1:function_name}(${2})${3: -> void}:",
+      "\t${0:pass}"
+    ],
+    "description": "Create a GDScript function"
+  },
+  "Ready function": {
+    "prefix": "_ready",
+    "body": [
+      "func _ready() -> void:",
+      "\t${0:pass}"
+    ],
+    "description": "Create the Node _ready callback"
+  },
+  "Process function": {
+    "prefix": "_process",
+    "body": [
+      "func _process(delta: float) -> void:",
+      "\t${0:pass}"
+    ],
+    "description": "Create the Node _process callback"
+  },
+  "Physics process function": {
+    "prefix": "_physics_process",
+    "body": [
+      "func _physics_process(delta: float) -> void:",
+      "\t${0:pass}"
+    ],
+    "description": "Create the Node _physics_process callback"
+  },
+  "Input event function": {
+    "prefix": "_input",
+    "body": [
+      "func _input(event: InputEvent) -> void:",
+      "\t${0:pass}"
+    ],
+    "description": "Create the Node _input callback"
+  },
+  "Export variable": {
+    "prefix": "@export",
+    "body": [
+      "@export var ${1:property}: ${2:Type} = ${0:default_value}"
+    ],
+    "description": "Export a property in the Inspector"
+  },
+  "Onready node": {
+    "prefix": "@onready",
+    "body": [
+      "@onready var ${1:node}: ${2:Node} = $${3:Path}"
+    ],
+    "description": "Initialize a node reference when the scene is ready"
+  },
+  "Signal": {
+    "prefix": "signal",
+    "body": [
+      "signal ${1:signal_name}(${2})"
+    ],
+    "description": "Declare a custom signal"
+  },
+  "If statement": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition}:",
+      "\t${0:pass}"
+    ],
+    "description": "Create an if statement"
+  },
+  "For loop": {
+    "prefix": "for",
+    "body": [
+      "for ${1:item} in ${2:items}:",
+      "\t${0:pass}"
+    ],
+    "description": "Create a for loop"
+  },
+  "While loop": {
+    "prefix": "while",
+    "body": [
+      "while ${1:condition}:",
+      "\t${0:pass}"
+    ],
+    "description": "Create a while loop"
+  },
+  "Match statement": {
+    "prefix": "match",
+    "body": [
+      "match ${1:value}:",
+      "\t${2:pattern}:",
+      "\t\t${0:pass}"
+    ],
+    "description": "Create a match statement"
+  },
+  "Await signal": {
+    "prefix": "await",
+    "body": [
+      "await ${1:signal}"
+    ],
+    "description": "Wait for a signal or coroutine"
+  }
+}
